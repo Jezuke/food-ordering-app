@@ -1,14 +1,14 @@
 app_name = "Jeatterey"
 sales_tax = 0.0825
-menu = { "products":[
-    {"sku1": { "name": "Adobo", "price":"5.99"}},
-    {"sku2": { "name": "Papaitan", "price":"7.99"}},
-    {"sku3": { "name": "Inihaw", "price":"5.99"}},
-    {"sku4": { "name": "Sinigang", "price":"7.99"}},
-    {"sku5": { "name": "Tinola", "price":"7.99"}},
-    {"sku6": { "name": "Sisig", "price":"5.99"}},
-    {"sku7": { "name": "Sinampalok", "price":"5.99"}}
-]}
+menu = {
+    "sku1": { "name": "Adobo", "price":"5.99"},
+    "sku2": { "name": "Papaitan", "price":"7.99"},
+    "sku3": { "name": "Inihaw", "price":"5.99"},
+    "sku4": { "name": "Sinigang", "price":"7.99"},
+    "sku5": { "name": "Tinola", "price":"7.99"},
+    "sku6": { "name": "Sisig", "price":"5.99"},
+    "sku7": { "name": "Sinampalok", "price":"5.99"}
+}
 
 options = { 
     1: "Add to cart",
@@ -21,10 +21,24 @@ options = {
 
 cart = {}
 
+"""
+Functions:
+* display_menu
+* add_item
+* remove_item
+"""
 
+def display_menu():
+    print("\n**** Menu ****\n")
+    for key in menu.keys():
+        menu_num = key[3:]
+        print(f"({menu_num}) {menu[key]['name']}: ${menu[key]['price']}")
+    print("\n**************\n")
 
 def main():
-    print(menu)
+    print(f"----- {app_name}: Filipino Cuisine ~ -----")
+    display_menu()
+
 
 if __name__ == "__main__":
     main()
