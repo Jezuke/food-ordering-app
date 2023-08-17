@@ -35,10 +35,20 @@ def display_menu():
         print(f"({menu_num}) {menu[key]['name']}: ${menu[key]['price']}")
     print("\n**************\n")
 
+def add_to_cart(sku, quantity):
+    if sku not in menu:
+        print("Error: This item is not on the menu...\n")
+    else:
+        if sku in cart:
+            cart[sku]["quantity"] += quantity
+        else:
+            cart[sku]= { "quantity": quantity }
+        print(f"Added {quantity} of {menu[sku]['name']} to cart.\n")
+
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
-
+    # add_to_cart("sku22",1)
 
 if __name__ == "__main__":
     main()
