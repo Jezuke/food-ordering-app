@@ -45,18 +45,25 @@ def add_to_cart(sku, quantity):
             cart[sku]= { "quantity": quantity, "name": menu[sku]['name'] }
         print(f"Added {quantity} of {cart[sku]['name']} to cart.\n")
 
-def remove_from_cart(sku):
+def remove_from_cart(sku, quantity=1):
     if sku not in cart:
         print("Error: This item is not in your cart...\n")
     else:
-        item_removed = cart.pop(sku)
-        print(f"Removed: {item_removed['name']}, from cart.\n")
+        if (quantity==cart[sku]["quantity"]) or (cart[sku]["quantity"]==1):
+            item_removed = cart.pop(sku)
+        elif quantity>=1 and cart[sku]["quantity"] > quantity:
+            cart[sku]["quantity"] -= quantity
+            item_removed = cart[sku]
+        else:
+            print("Invalid quantity...\n")
+            return
+        print(f"Removed: {quantity} of {item_removed['name']}, from cart.\n")
     
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
-    add_to_cart("sku2",1)
-    remove_from_cart("sku2")
+    add_to_cart("sku2",3)
+    remove_from_cart("sku2",1)
 
 if __name__ == "__main__":
     main()
