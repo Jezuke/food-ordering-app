@@ -1,13 +1,13 @@
 app_name = "Jeatterey"
-sales_tax = 0.0825
+sales_tax = 1.0825
 menu = {
-    "sku1": { "name": "Adobo", "price":"5.99"},
-    "sku2": { "name": "Papaitan", "price":"7.99"},
-    "sku3": { "name": "Inihaw", "price":"5.99"},
-    "sku4": { "name": "Sinigang", "price":"7.99"},
-    "sku5": { "name": "Tinola", "price":"7.99"},
-    "sku6": { "name": "Sisig", "price":"5.99"},
-    "sku7": { "name": "Sinampalok", "price":"5.99"}
+    "sku1": { "name": "Adobo", "price": 5.99},
+    "sku2": { "name": "Papaitan", "price": 7.99},
+    "sku3": { "name": "Inihaw", "price": 5.99},
+    "sku4": { "name": "Sinigang", "price": 7.99},
+    "sku5": { "name": "Tinola", "price": 7.99},
+    "sku6": { "name": "Sisig", "price": 5.99},
+    "sku7": { "name": "Sinampalok", "price": 5.99}
 }
 
 options = { 
@@ -78,11 +78,13 @@ def modify_cart(sku, quantity):
         print("Invalid input. Item not in the cart...\n")
 
 def view_cart():
-    print("***** Cart *****")
-    
+    print("\n***** Cart *****")
+    sub_total = 0
     for sku in cart:
-        print(f"{cart[sku]['quantity']} x {cart[sku]['quantity']}")
-
+        print(f"{cart[sku]['quantity']} x {cart[sku]['name']}")
+        sub_total += menu[sku]["price"]*cart[sku]["quantity"]
+    print(f"Total: ${round(sub_total*sales_tax,3)}")
+    print("****************\n")
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
