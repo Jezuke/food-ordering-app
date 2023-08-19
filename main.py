@@ -35,7 +35,7 @@ def display_menu():
         print(f"({menu_num}) {menu[key]['name']}: ${menu[key]['price']}")
     print("\n**************\n")
 
-def add_to_cart(sku, quantity):
+def add_to_cart(sku, quantity=1):
     if sku not in menu:
         print("Error: This item is not on the menu...\n")
     else:
@@ -73,7 +73,7 @@ def modify_cart(sku, quantity):
             remove_code = remove_from_cart(sku, cart[sku]["quantity"])
         
         if remove_code:
-            print(f"Modified {menu[sku]['name']} quantity to {quantity} in the cart.") 
+            print(f"Modified {menu[sku]['name']} quantity to {quantity} in the cart.\n") 
     else:
         print("Invalid input. Item not in the cart...\n")
 
@@ -83,15 +83,22 @@ def view_cart():
     for sku in cart:
         print(f"{cart[sku]['quantity']} x {cart[sku]['name']}")
         sub_total += menu[sku]["price"]*cart[sku]["quantity"]
-    print(f"Total: ${round(sub_total*sales_tax,3)}")
+    print(f"Total: ${format(sub_total*sales_tax,'.2f')}")
     print("****************\n")
+
+def checkout():
+    print("\n~~~~~ Checkout ~~~~~~")
+    view_cart()
+    print("Order submitted...\n")
+
+# TODO Create flow
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
     add_to_cart("sku2",3)
     modify_cart("sku2",6)
-    view_cart()
-    modify_cart("sku2",0)
-    view_cart()
+    add_to_cart("sku3")
+    add_to_cart("sku4",4)
+    checkout()
 if __name__ == "__main__":
     main()
