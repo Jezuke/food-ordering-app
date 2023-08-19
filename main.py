@@ -77,13 +77,19 @@ def modify_cart(sku, quantity):
     else:
         print("Invalid input. Item not in the cart...\n")
 
+def view_cart():
+    print("***** Cart *****")
+    
+    for sku in cart:
+        print(f"{cart[sku]['quantity']} x {cart[sku]['quantity']}")
+
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
     add_to_cart("sku2",3)
     modify_cart("sku2",6)
-    print(cart)
+    view_cart()
     modify_cart("sku2",0)
-    print(cart)
+    view_cart()
 if __name__ == "__main__":
     main()
