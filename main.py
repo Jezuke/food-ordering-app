@@ -58,12 +58,26 @@ def remove_from_cart(sku, quantity=1):
             print("Invalid quantity...\n")
             return
         print(f"Removed: {quantity} of {item_removed['name']}, from cart.\n")
-    
+
+def modify_cart(sku, quantity):
+    if sku in cart:
+        if quantity > 0:
+            cart[sku]["quantity"] = quantity
+        elif quantity < 0:
+            remove_from_cart(sku, abs(quantity))
+        else:
+            remove_from_cart(sku, cart[sku]["quantity"])
+        print(f"Modified {menu[sku]['name']} quantity to {quantity} in the cart.")
+    else:
+        print("Invalid input. Item not in the cart...\n")
+
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
     add_to_cart("sku2",3)
-    remove_from_cart("sku2",1)
-
+    modify_cart("sku2",3)
+    print(cart)
+    modify_cart("sku2",-3)
+    print(cart)
 if __name__ == "__main__":
     main()
