@@ -91,7 +91,7 @@ def checkout():
     view_cart()
     print("Order submitted...\n")
 
-def get_sku_and_quantity(sku, quantity_prompt=None):
+def get_sku_and_quantity(quantity_prompt=None):
     sku = "sku"+input("Enter option: ")
     
     if quantity_prompt:
@@ -104,9 +104,30 @@ def get_sku_and_quantity(sku, quantity_prompt=None):
     else:
         return sku
 
+def display_options():
+    print("\n****Options****\n")
+    for option in options:
+        print(f"({option}) {options[option]}")
+
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
-    display_menu()
-    
+    app_running = True
+
+    while app_running:
+        display_options()
+
+        try:
+            option = int(input("Select option: "))
+            if option == 1:
+                display_menu()
+                item_choice,quantity = get_sku_and_quantity(True)
+                add_to_cart(item_choice, quantity)
+            elif option == 4:
+                view_cart()
+            elif option == 6:
+                app_running = False
+        except Exception as e:
+            print("Error: ", e)
+        
 if __name__ == "__main__":
     main()
