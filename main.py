@@ -109,6 +109,8 @@ def display_options():
     for option in options:
         print(f"({option}) {options[option]}")
 
+# TODO remove redundancies
+# TODO clear all function
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     app_running = True
