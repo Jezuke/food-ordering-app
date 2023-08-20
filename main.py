@@ -91,14 +91,22 @@ def checkout():
     view_cart()
     print("Order submitted...\n")
 
-# TODO Create flow
+def get_sku_and_quantity(sku, quantity_prompt=None):
+    sku = "sku"+input("Enter option: ")
+    
+    if quantity_prompt:
+        quantity = input("Quantity: ")
+        if quantity.isdigit():
+            quantity = int(quantity)
+            return sku, quantity
+        else:
+            print("Invalid input. Must be an integer...\n")
+    else:
+        return sku
+
 def main():
     print(f"----- {app_name}: Filipino Cuisine ~ -----")
     display_menu()
-    add_to_cart("sku2",3)
-    modify_cart("sku2",6)
-    add_to_cart("sku3")
-    add_to_cart("sku4",4)
-    checkout()
+    
 if __name__ == "__main__":
     main()
