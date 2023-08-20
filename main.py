@@ -122,10 +122,23 @@ def main():
                 display_menu()
                 item_choice,quantity = get_sku_and_quantity(True)
                 add_to_cart(item_choice, quantity)
+            elif option == 2:
+                display_menu()
+                item_choice,quantity = get_sku_and_quantity(True)
+                remove_from_cart(item_choice, quantity)
+            elif option == 3:
+                display_menu()
+                item_choice,quantity = get_sku_and_quantity(True)
+                modify_cart(item_choice, quantity)
+            elif option == 5:
+                checkout()
+                app_running = False
             elif option == 4:
                 view_cart()
             elif option == 6:
                 app_running = False
+            else:
+                print("Invalid option...")
         except Exception as e:
             print("Error: ", e)
         
